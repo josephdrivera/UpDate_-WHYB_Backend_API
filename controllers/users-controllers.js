@@ -24,6 +24,7 @@ const signup = async (req, res, next) => {
       new HttpError('Invalid inputs passed, please check your data.', 422)
     );
   }
+
   const { name, email, password } = req.body;
 
   let existingUser;
@@ -48,9 +49,9 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image: 'https://media.istockphoto.com/id/1323990939/photo/a-studio-portrait-of-a-young-millennial-woman.jpg?s=2048x2048&w=is&k=20&c=SKgUYoUmMcHauiN3r7x57OWjN0NozPdb0tqVZhoowxw=',
+    image: req.file.path,
     password,
-    places: []
+    places: [],
   });
 
   try {
